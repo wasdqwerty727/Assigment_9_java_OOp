@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class WordProcessor {
-    private Set<String> distinctWords = new HashSet<>();
+    private final Set<String> distinctWords = new HashSet<>();
     public void readFile(String filePath) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
