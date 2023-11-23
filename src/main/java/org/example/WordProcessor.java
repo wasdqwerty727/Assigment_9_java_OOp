@@ -1,25 +1,25 @@
 package org.example;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 
 public class WordProcessor {
-    private final Set<String> distinctWords = new HashSet<>();
-    public void readFile(String filePath) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] words = line.split("\\s+");
-                for (String word : words) {
-                    distinctWords.add(word.toLowerCase()); // Convert to lowercase to make the comparison case-insensitive
-                }
+    private Set<String> distinctWords = new HashSet<>();
+    public void readFile(String filepath){
+        try{
+            File file = new File(filepath);
+            Scanner myReader = new Scanner(file);
+            while(myReader.hasNext()){
+                String word = myReader.next().replaceAll("[,.?!]", "").toLowerCase();
+                distinctWords.add(word);
             }
+        } catch (FileNotFoundException e){
+            System.out.println(e.toString());
         }
     }
-    public Set<String> getDistinctWords() {
+    public Set<String> getDistinctWords(){
         return distinctWords;
     }
 }

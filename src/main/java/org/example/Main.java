@@ -4,21 +4,14 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        try {
-            WordProcessor wordProcessor1 = new WordProcessor();
-            wordProcessor1.readFile("C://Users//Lenovo//OneDrive//Desktop//Test_text.txt");
+        WordProcessor wp1 = new WordProcessor();
+        WordProcessor wp2 = new WordProcessor();
+        wp1.readFile("C://Users//Lenovo//OneDrive//Desktop//Test_text4.txt");
+        System.out.println(wp1.getDistinctWords());
+        wp2.readFile("C://Users//Lenovo//OneDrive//Desktop//Test_text5.txt");
+        System.out.println(wp2.getDistinctWords());
 
-            WordProcessor wordProcessor2 = new WordProcessor();
-            wordProcessor2.readFile("C://Users//Lenovo//OneDrive//Desktop//Test_text2.txt");
-
-            SimilarityCalculator similarityCalculator = new SimilarityCalculator();
-            double similarity = similarityCalculator.calculateSimilarity(wordProcessor1.getDistinctWords(), wordProcessor2.getDistinctWords());
-
-            System.out.println("Jaccard Similarity Coefficient: " + similarity);
-            System.out.println(wordProcessor1.getDistinctWords());
-
-        } catch (IOException e) {
-            System.err.println("An error occurred while processing the files: " + e.getMessage());
-        }
+        SimilarityCalculator sim = new SimilarityCalculator();
+        System.out.println(sim.calculateSimilarity(wp1.getDistinctWords(), wp2.getDistinctWords()));
     }
 }
